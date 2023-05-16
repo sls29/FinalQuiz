@@ -4,24 +4,19 @@ public class Package {
     public String targetLocation;
     public double distance;
     public double packageValue;
-    public int dateYear;
-    public int dateMonth;
-    public int dateDay;
+    public String day;
 
-    public Package(String targetLocation, double distance, double packageValue,
-                   int dateYear, int dateMonth, int dateDay) {
+    public Package(String targetLocation, double distance, double packageValue, String day) {
         this.targetLocation = targetLocation;
         this.distance = distance;
         this.packageValue = packageValue;
-        this.dateYear = dateYear;
-        this.dateMonth = dateMonth;
-        this.dateDay = dateDay;
+        this.day = day;
     }
 
     public String toString(){
         return "Destination: " + targetLocation +
                 "- Distance: " + distance +
                 "- Value: " + packageValue +
-                "- Delevery date: " + dateYear + "-" + dateMonth + "-" + dateDay;
+                "- Delevery date: " + day;
     }
 }
