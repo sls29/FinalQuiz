@@ -1,22 +1,32 @@
+
 package org.example;
 
+import lombok.*;
+import lombok.experimental.FieldNameConstants;
+
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@Builder
+@ToString
 public class Package {
-    public String targetLocation;
-    public double distance;
-    public double packageValue;
-    public String day;
+    private String location;
+    private double distance;
+    private double value;
+    private LocalDate deliveryDate;
 
-    public Package(String targetLocation, double distance, double packageValue, String day) {
-        this.targetLocation = targetLocation;
-        this.distance = distance;
-        this.packageValue = packageValue;
-        this.day = day;
-    }
-
-    public String toString(){
-        return "Destination: " + targetLocation +
-                "- Distance: " + distance +
-                "- Value: " + packageValue +
-                "- Delevery date: " + day;
+    public static Package createPackage(String line) {
+        if (line.isEmpty() || line.split(",").length != 4) {
+            throw new RuntimeException("Could not create package");
+        }
+        String[] tokens = line.split(",");
+        return Package.builder()
+                .location(tokens[0])
+                .distance(Double.parseDouble(tokens[1]))
+                .value(Double.parseDouble(tokens[2]))
+                .deliveryDate(LocalDate.parse(tokens[3]))
+                .build();
     }
 }
